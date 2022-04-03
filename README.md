@@ -2,16 +2,16 @@
 ecommercial web
 api
 --authentication
-post :/login
-{
-   "userName":"user",
-    "userPassword":"123"
- }
- post:/register
+post :/login <br />
+{<br />
+   "userName":"user",<br />
+    "userPassword":"123"<br />
+ }<br />
+ post:/register<br />
  
- {
-   "userName":"example",
-    "userPassword":"example"
- }
- --product
+ {<br />
+   "userName":"example",<br />
+    "userPassword":"example"<br />
+ }<br />
+ --product<br />
  
