@@ -106,6 +106,17 @@ post:/wishlist/:id
 "productId":1
 }
 
+---address
+//create new address for user
+post:/address/:id
 
+{
+   "recivedName":"Lê Quang Minh",
+   "recivedNumber":"0912854122",
+   "recivedAddress":"Thủy Nguyên- Hải Phòng",
+   "userId":1
+    
+
+}
 
 
