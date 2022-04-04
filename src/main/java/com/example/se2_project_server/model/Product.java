@@ -3,11 +3,17 @@ package com.example.se2_project_server.model;
 
 
 
+import com.example.se2_project_server.validation.UniqueSlugName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import java.util.Set;
 
 @Entity
+@Table(name="product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +22,15 @@ public class Product {
     private String desc;
     private String image1;
     private String image2;
+
+    public CategorySlug  getCategorySlug() {
+        return categorySlug;
+    }
+
+    public void setCategorySlug(CategorySlug categorySlug) {
+        this.categorySlug = categorySlug;
+    }
+
     private String image3;
     private Integer rating;
 
@@ -24,8 +39,11 @@ public class Product {
 
     private Integer discount;
     private Float  regularPrice;
-    @Column(unique = true)
+  @UniqueSlugName
+     @NotEmpty(message = "slug name is empty")
     private String  slugName;
+    @ManyToOne(cascade ={CascadeType.DETACH,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
+    private CategorySlug categorySlug;
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private Set<Gender> genders;
 
@@ -57,24 +75,7 @@ public class Product {
         return image1;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", desc='" + desc + '\'' +
-                ", image1='" + image1 + '\'' +
-                ", image2='" + image2 + '\'' +
-                ", image3='" + image3 + '\'' +
-                ", rating=" + rating +
-                ", discount=" + discount +
-                ", regularPrice=" + regularPrice +
-                ", slugName='" + slugName + '\'' +
-                ", genders=" + genders +
-                ", colors=" + colors +
-                ", sizes=" + sizes +
-                '}';
-    }
+
 
     public void setImage1(String image1) {
         this.image1 = image1;
@@ -156,5 +157,24 @@ public class Product {
     private Set<Color> colors;
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
     private  Set<Size> sizes;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "Wish_List",
+            joinColumns = {
+                    @JoinColumn(name = "PRODUCT_ID")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "USER_ID")
+            })
+private Set<User> users;
+
 
 }

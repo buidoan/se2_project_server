@@ -8,7 +8,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(unique = true)
@@ -86,5 +86,32 @@ public class User {
 
     public void setRole(Set<Role> role) {
         this.role = role;
+    }
+
+    public Set<Product> getWishList() {
+        return WishList;
+    }
+
+    public void setWishList(Set<Product> wishList) {
+        WishList = wishList;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "Wish_List",
+            joinColumns = {
+                    @JoinColumn(name = "USER_ID")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "PRODUCT_ID")
+            }
+    )
+    private Set<Product> WishList;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
