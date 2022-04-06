@@ -40,9 +40,9 @@ public class Product {
     private Integer discount;
     private Float  regularPrice;
   @UniqueSlugName
-     @NotEmpty(message = "slug name is empty")
+
     private String  slugName;
-    @ManyToOne(cascade ={CascadeType.DETACH,CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
+    @ManyToOne(cascade ={CascadeType.MERGE})
     private CategorySlug categorySlug;
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private Set<Gender> genders;

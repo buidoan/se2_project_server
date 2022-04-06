@@ -56,19 +56,24 @@ public class UserService {
     }
 
     public String handleWishList(Long userId, Long productId) {
-        User user=userRepository.findById(userId).get();
-        Product product = productRepository.findById(productId).get();
-        Set<Product> wishlist = getWishListByUserId(userId);
-        if (wishlist.contains(product)) {
-            wishlist.remove(product);
-            user.setWishList(wishlist);
-            userRepository.save(user);
-            return "You removed a product from your wish list!";
-        } else {
-            wishlist.add(product);
-            user.setWishList(wishlist);
-            userRepository.save(user);
-            return "You added a product from your wish list!";
+        if(userRepository.existsById(userId)&&productRepository.existsById(productId)){
+            User user=userRepository.findById(userId).get();
+            Product product = productRepository.findById(productId).get();
+            Set<Product> wishlist = getWishListByUserId(userId);
+            if (wishlist.contains(product)) {
+                wishlist.remove(product);
+                user.setWishList(wishlist);
+                userRepository.save(user);
+                return "You removed a product from your wish list!";
+            } else {
+                wishlist.add(product);
+                user.setWishList(wishlist);
+                userRepository.save(user);
+                return "You added a product from your wish list!";
+            }
+        }else{
+            return "the product is not existed";
         }
+
     }
 }

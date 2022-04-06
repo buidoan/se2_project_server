@@ -1,6 +1,7 @@
 package com.example.se2_project_server.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Address {
@@ -57,8 +58,9 @@ public class Address {
     }
 
 
-
+    @NotEmpty(message = "recieved number is empty")
     private String  recivedNumber;
+    @NotEmpty(message = "receivedAddress is empty")
     private String recivedAddress;
 
 

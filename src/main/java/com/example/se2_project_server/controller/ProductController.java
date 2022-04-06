@@ -42,7 +42,7 @@ public class ProductController {
 
     //add product
     @PostMapping("/")
-//    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin')")
     public Product add(@Valid @RequestBody Product product) {
         return productService.creatNewProduct(product);
     }
@@ -61,12 +61,12 @@ public class ProductController {
 
     //update product
     @PutMapping("/{id}")
-//        @PreAuthorize("hasRole('Admin')")
-    public String updateProduct(@PathVariable(value = "id") Long id,@Valid @RequestBody Product product){
+        @PreAuthorize("hasRole('Admin')")
+    public String updateProduct(@PathVariable(value = "id") Long id, @RequestBody Product product){
        return productService.updateProduct(id,product);
     }
     @DeleteMapping("/{id}")
-//        @PreAuthorize("hasRole('Admin')")
+        @PreAuthorize("hasRole('Admin')")
     public String deleteProduct(@PathVariable(value = "id") Long id){
        return productService.deleteProductById(id);
     }
