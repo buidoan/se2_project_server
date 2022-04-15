@@ -1,6 +1,7 @@
 package com.example.se2_project_server.service;
 
 
+import com.example.se2_project_server.exception.UserNotFoundException;
 import com.example.se2_project_server.model.Product;
 import com.example.se2_project_server.model.Role;
 import com.example.se2_project_server.model.User;
@@ -31,6 +32,24 @@ public class UserService {
 
     private PasswordEncoder passwordEncoder;
 
+    public User getById(Long id) {
+        if (!userRepository.existsById(id)) throw new UserNotFoundException();
+        return userRepository.findById(id).get();
+    }
+
+    public User updateById(Long id, User newUser) {
+        if (!userRepository.existsById(id)) throw new UserNotFoundException();
+        newUser.setId(id);
+        userRepository.save(newUser);
+        return newUser;
+    }
+    public String deleteById(Long id){
+        if (!userRepository.existsById(id)) throw new UserNotFoundException();
+        else{
+            userRepository.deleteById(id);
+            return "deleted sucess";
+        }
+    }
 
     public User registerNewUser(User user) {
         Role role = roleRepository.findByRoleName("User");
@@ -56,8 +75,8 @@ public class UserService {
     }
 
     public String handleWishList(Long userId, Long productId) {
-        if(userRepository.existsById(userId)&&productRepository.existsById(productId)){
-            User user=userRepository.findById(userId).get();
+        if (userRepository.existsById(userId) && productRepository.existsById(productId)) {
+            User user = userRepository.findById(userId).get();
             Product product = productRepository.findById(productId).get();
             Set<Product> wishlist = getWishListByUserId(userId);
             if (wishlist.contains(product)) {
@@ -71,7 +90,7 @@ public class UserService {
                 userRepository.save(user);
                 return "You added a product from your wish list!";
             }
-        }else{
+        } else {
             return "the product is not existed";
         }
 

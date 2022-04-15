@@ -23,6 +23,7 @@ public class ProductController {
 
     //get list product
     @GetMapping("/")
+
     public List<Product> getList() {
         return productService.getListProduct();
     }
@@ -35,6 +36,7 @@ public class ProductController {
 
     //get product by gender
     @GetMapping("/category/{gender}")
+
     public List<Product> getListByGender(@PathVariable(name = "gender") String gender) {
 
         return productService.getProductByGender(gender);

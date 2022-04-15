@@ -4,13 +4,17 @@ package com.example.se2_project_server.model;
 
 
 import com.example.se2_project_server.validation.UniqueSlugName;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.stereotype.Repository;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
-import java.util.Set;
+import java.util.*;
+
+
 
 @Entity
 @Table(name="product")
@@ -18,9 +22,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private String desc;
+
     private String image1;
+
     private String image2;
 
     public CategorySlug  getCategorySlug() {
@@ -32,18 +40,23 @@ public class Product {
     }
 
     private String image3;
+
+
     private Integer rating;
 
     public Product() {
     }
 
     private Integer discount;
+
     private Float  regularPrice;
   @UniqueSlugName
 
     private String  slugName;
+
     @ManyToOne(cascade ={CascadeType.MERGE})
     private CategorySlug categorySlug;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     private Set<Gender> genders;
 
@@ -155,6 +168,7 @@ public class Product {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
     private Set<Color> colors;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE} )
     private  Set<Size> sizes;
 
@@ -175,6 +189,41 @@ public class Product {
                     @JoinColumn(name = "USER_ID")
             })
 private Set<User> users;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date",nullable = false)
+    private Date create;
 
 
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_date")
+    private Date update;
+
+    @PrePersist
+    protected void onCreate() {
+        create = new Date();
+    }
+
+    public void setCreate(Date create) {
+        this.create = create;
+    }
+
+    public void setUpdate(Date update) {
+        this.update = update;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        update = new Date();
+    }
+
+    public Date getCreate() {
+        return create;
+    }
+
+    public Date getUpdate() {
+        return update;
+    }
 }

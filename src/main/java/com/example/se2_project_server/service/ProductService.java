@@ -38,7 +38,9 @@ public class ProductService {
     }
     public String updateProduct(Long id, Product product){
         if(productRepository.existsById(id)){
+            Product oldProduct=productRepository.findById(id).get();
             product.setId(id);
+            product.setCreate(oldProduct.getCreate());
             productRepository.save(product);
             return "Update successfull!";
         } else{

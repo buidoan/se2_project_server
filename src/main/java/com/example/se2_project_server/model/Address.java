@@ -1,14 +1,17 @@
 package com.example.se2_project_server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @OneToOne
+    @JsonBackReference
     @JoinColumn(name="user_id")
     private User user;
 
@@ -24,6 +27,13 @@ public class Address {
 
     public Long getId() {
         return id;
+    }
+
+    public Address(User user, String recivedName, String recivedNumber, String recivedAddress) {
+        this.user = user;
+        this.recivedName = recivedName;
+        this.recivedNumber = recivedNumber;
+        this.recivedAddress = recivedAddress;
     }
 
     public void setId(Long id) {

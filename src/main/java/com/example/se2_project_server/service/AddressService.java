@@ -18,7 +18,7 @@ public class AddressService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<Address> findByUserId(Long id) {
+    public Address findByUserId(Long id) {
       if(userRepository.existsById(id)){
           return addressRepository.findAddressByUserId(id);
       }

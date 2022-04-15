@@ -25,7 +25,7 @@ public class AddressController {
     private UserRepository userRepository;
     //get list addresss by id of user
     @GetMapping("/{id}")
-    public List<Address> getAddressByUserId(@PathVariable(value = "id")Long id){
+    public Address getAddressByUserId(@PathVariable(value = "id")Long id){
         return addressService.findByUserId(id);
     }
     //create new address with id of user

@@ -1,5 +1,7 @@
 package  com.example.se2_project_server.model;
 
+import com.example.se2_project_server.validation.UniqueUserName;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(unique = true)
+    @UniqueUserName
     private String userName;
     private String email;
     private String  phoneNumber;
