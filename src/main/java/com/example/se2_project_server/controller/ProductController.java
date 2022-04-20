@@ -29,8 +29,8 @@ public class ProductController {
     }
 
     //get product detail by slug name
-    @GetMapping("/find/")
-    public Product getProductBySlug(@RequestParam(name = "slugName") String slugName) {
+    @GetMapping("/find/{slugName}")
+    public Product getProductBySlug(@PathVariable(name = "slugName") String slugName) {
         return productService.getProductBySlugName(slugName);
     }
 

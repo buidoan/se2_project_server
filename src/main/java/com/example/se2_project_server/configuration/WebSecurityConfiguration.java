@@ -40,7 +40,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/login","/user/wishlist/{id}", "/user/**","/user/get/{id}","/register","/product/","/product/category/{gender}","product/find/").permitAll()
+                .authorizeRequests().antMatchers("/login","/user/wishlist/{id}", "/user/**","/user/get/{id}","/register","/product/","/product/category/{gender}","/product/find/{slugName}").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
                 .and()
