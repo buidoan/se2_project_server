@@ -43,7 +43,7 @@ List<OrderPojo> orderPojos=new ArrayList<>();
                 }
 
 
-                OrderPojo orderPojo = new OrderPojo(orders.get(i).getId(), orders.get(i).getUser().getId(),orders.get(i).getQuantity(), orders.get(i).getAddress().getRecivedName(), orders.get(i).getPaymentMethod(), orders.get(i).getAddress().getRecivedNumber(), orders.get(i).getAddress().getRecivedAddress(), orderItemPoJos);
+                OrderPojo orderPojo = new OrderPojo(orders.get(i).getId(), orders.get(i).getUser().getId(),orders.get(i).getQuantity(), orders.get(i).getAddress().getReceivedName(), orders.get(i).getPaymentMethod(), orders.get(i).getAddress().getReceivedNumber(), orders.get(i).getAddress().getReceivedAddress(), orderItemPoJos);
                 orderPojos.add(orderPojo);
             }return orderPojos;
 
@@ -60,12 +60,12 @@ List<OrderPojo> orderPojos=new ArrayList<>();
       }
     User user=userRepository.findById(orderPojo.getUserId()).get();
       Order  order=new Order();
-      if(addressRepository.findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber())==null){
+      if(addressRepository.findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber())==null){
 
           addressRepository.save(new Address(user,orderPojo.getName(),orderPojo.getPhoneNumber(),orderPojo.getAddress()));
-          order.setAddress(addressRepository.findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
+          order.setAddress(addressRepository.findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
       }else {
-          order.setAddress(addressRepository.findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
+          order.setAddress(addressRepository.findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
       }
 
       order.setOrderItemSet(orderItemSet);
@@ -91,12 +91,12 @@ List<OrderPojo> orderPojos=new ArrayList<>();
         }
         User user=userRepository.findById(orderPojo.getUserId()).get();
         Order  order=orderRepository.findById(orderId).get();
-        if(addressRepository.findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber())==null){
+        if(addressRepository.findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber())==null){
 
             addressRepository.save(new Address(user,orderPojo.getName(),orderPojo.getPhoneNumber(),orderPojo.getAddress()));
-            order.setAddress(addressRepository.findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
+            order.setAddress(addressRepository.findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
         }else {
-            order.setAddress(addressRepository.findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
+            order.setAddress(addressRepository.findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(userId,orderPojo.getAddress(),orderPojo.getName(),orderPojo.getPhoneNumber()));
         }
         order.setOrderItemSet(orderItemSet);
         order.setUser(user);
@@ -134,7 +134,7 @@ public List<OrderPojo> getAllOrder(){
         }
 
 
-        OrderPojo orderPojo = new OrderPojo(orders.get(i).getId(), orders.get(i).getUser().getId(),orders.get(i).getQuantity(), orders.get(i).getAddress().getRecivedName(), orders.get(i).getPaymentMethod(), orders.get(i).getAddress().getRecivedNumber(), orders.get(i).getAddress().getRecivedAddress(), orderItemPoJos);
+        OrderPojo orderPojo = new OrderPojo(orders.get(i).getId(), orders.get(i).getUser().getId(),orders.get(i).getQuantity(), orders.get(i).getAddress().getReceivedName(), orders.get(i).getPaymentMethod(), orders.get(i).getAddress().getReceivedNumber(), orders.get(i).getAddress().getReceivedAddress(), orderItemPoJos);
         orderPojos.add(orderPojo);
     }
     return orderPojos;

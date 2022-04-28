@@ -273,5 +273,11 @@ INSERT INTO `se2`.`product_sizes` (`product_id`, `sizes_size_name`) VALUES ('18'
 INSERT INTO `se2`.`product_sizes` (`product_id`, `sizes_size_name`) VALUES ('18', 'l');
 INSERT INTO `se2`.`product_sizes` (`product_id`, `sizes_size_name`) VALUES ('18', 'xl');
 
+INSERT INTO `se2`.`address` (`received_name`,`received_number`,`received_address`,`user_id`)
+VALUES ('Lê Quang Minh', '0912854122', 'Thủy Nguyên- Hải Phòng',1);
+
+INSERT INTO `se2`.`address` (`received_name`,`received_number`,`received_address`,`user_id`)
+VALUES ('Lê Quang Liêm', '091474122', 'Tam Hưng-Thủy Nguyên - Hải Phòng',2);
+
 
 

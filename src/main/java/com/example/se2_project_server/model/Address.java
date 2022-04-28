@@ -23,55 +23,55 @@ public class Address {
         this.user = user;
     }
 
-    private String recivedName;
+    private String receivedName;
 
     public Long getId() {
         return id;
     }
 
-    public Address(User user, String recivedName, String recivedNumber, String recivedAddress) {
+    public Address(User user, String receivedName, String receivedNumber, String receivedAddress) {
         this.user = user;
-        this.recivedName = recivedName;
-        this.recivedNumber = recivedNumber;
-        this.recivedAddress = recivedAddress;
+        this.receivedName = receivedName;
+        this.receivedNumber = receivedNumber;
+        this.receivedAddress = receivedAddress;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getRecivedName() {
-        return recivedName;
+    public String getReceivedName() {
+        return receivedName;
     }
 
-    public void setRecivedName(String recivedName) {
-        this.recivedName = recivedName;
+    public void setReceivedName(String receivedName) {
+        this.receivedName = receivedName;
     }
 
     public Address() {
     }
 
-    public String getRecivedNumber() {
-        return recivedNumber;
+    public String getReceivedNumber() {
+        return receivedNumber;
     }
 
-    public void setRecivedNumber(String recivedNumber) {
-        this.recivedNumber = recivedNumber;
+    public void setReceivedNumber(String receivedNumber) {
+        this.receivedNumber = receivedNumber;
     }
 
-    public String getRecivedAddress() {
-        return recivedAddress;
+    public String getReceivedAddress() {
+        return receivedAddress;
     }
 
-    public void setRecivedAddress(String recivedAddress) {
-        this.recivedAddress = recivedAddress;
+    public void setReceivedAddress(String recivedAddress) {
+        this.receivedAddress = recivedAddress;
     }
 
 
     @NotEmpty(message = "recieved number is empty")
-    private String  recivedNumber;
+    private String  receivedNumber;
     @NotEmpty(message = "receivedAddress is empty")
-    private String recivedAddress;
+    private String receivedAddress;
 
 
 }

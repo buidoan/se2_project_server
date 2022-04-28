@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface AddressRepository extends JpaRepository<Address,Long> {
 public Address findAddressByUserId(Long userId);
-public Address findAddressByRecivedNumber(String recivedNumber);
-public Address findAddressByUserIdAndAndRecivedAddressAndRecivedNameAndRecivedNumber(Long id,String RecivedAddress,String RecivedName,String RecivedNumber );
+public Address findAddressByReceivedNumber(String receivedNumber);
+public Address findAddressByUserIdAndAndReceivedAddressAndReceivedNameAndReceivedNumber(Long id,String ReceivedAddress,String ReceivedName,String ReceivedNumber );
 }
